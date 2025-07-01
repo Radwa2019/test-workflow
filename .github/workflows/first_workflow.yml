@@ -34,7 +34,7 @@ jobs:
 
       - name: Run remote commands via SSH
         run: |
-           ssh -i -t ~/.ssh/deploy_key ${{ env.SSH_USERNAME }}@${{ env.EC2_INSTANCE_IP }} << 'EOF'
+           ssh -i ~/.ssh/deploy_key ${{ env.SSH_USERNAME }}@${{ env.EC2_INSTANCE_IP }} << 'EOF'
            cd ${{ env.REMOTE_DIR }}
            touch firstfile.txt
            echo "This is a test file created by GitHub Actions" > firstfile.txt
