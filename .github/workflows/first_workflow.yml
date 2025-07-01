@@ -39,4 +39,8 @@ jobs:
            touch firstfile.txt
            echo "This is a test file created by GitHub Actions" > firstfile.txt
            echo "Deployment completed successfully!"
+           sudo apt update
+           sudo apt install -y nodejs
+           node --version
+           npm --version
            EOF
