@@ -8,7 +8,7 @@ env:
   EC2_INSTANCE_ID: 'i-09e2451804968eb07'
   EC2_INSTANCE_IP: '52.201.230.252'
   SSH_USERNAME: 'ubuntu'
-  REMOTE_DIR: '/home/ubuntu/app'
+  REMOTE_DIR: '/home/ubuntu/app1'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -32,3 +32,10 @@ jobs:
         run: |
            scp -i ~/.ssh/deploy_key -r ./* ${{ env.SSH_USERNAME }}@${{ env.EC2_INSTANCE_IP }}:${{ env.REMOTE_DIR }}
 
+      - name: Run remote commands via SSH
+        run: |
+           ssh -i ~/.ssh/deploy_key ${{ env.SSH_USERNAME }}@${{ env.EC2_INSTANCE_IP }} 
+           cd ${{ env.REMOTE_DIR }}
+           touch firstfile.txt
+           echo "This is a test file created by GitHub Actions" > firstfile.txt
+            ls -l
